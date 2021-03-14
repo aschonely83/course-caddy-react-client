@@ -1,5 +1,9 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route, NavLink,} from 'react-router-dom';
+import { BrowserRouter as Router, 
+  Switch, 
+  Route, 
+  NavLink
+} from 'react-router-dom';
 import CoursesIndexContainer from './containers/CoursesIndexContainer';
 import CourseFormContainer from './containers/CourseFormContainer';
 
@@ -27,8 +31,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <CoursesIndexContainer />
-            </Route>
-          <Route path="/courses/new">New Course</Route>
+          </Route>
+          <Route path="/courses/new" component={CourseFormContainer}>
+          </Route>
         </Switch>
       </Router> 
     </div>

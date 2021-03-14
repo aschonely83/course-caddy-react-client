@@ -19,7 +19,6 @@ export default class CoursesIndexContainer extends Component {
         })
           .then(res => res.json())
           .then(coursesJson => {
-            console.log('courses', coursesJson)
             this.setState({
               courses: coursesJson,
               loading: false
