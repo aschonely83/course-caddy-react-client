@@ -6,6 +6,7 @@ import { BrowserRouter as Router,
 } from 'react-router-dom';
 import CoursesIndexContainer from './containers/CoursesIndexContainer';
 import CourseFormContainer from './containers/CourseFormContainer';
+import NewRoundContainer from './containers/NewRoundContainer'
 
 function App() {
   return (
@@ -32,8 +33,8 @@ function App() {
           <Route exact path="/">
             <CoursesIndexContainer />
           </Route>
-          <Route path="/courses/new" component={CourseFormContainer}>
-          </Route>
+          <Route path="/courses/new" component={CourseFormContainer} />
+          <Route path="/courses/:courseId/rounds/new" component={NewRoundContainer} />
         </Switch>
       </Router> 
     </div>

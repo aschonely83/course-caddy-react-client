@@ -29,7 +29,7 @@ export default class CoursesIndexContainer extends Component {
     
     render() {
     return (
-      <section className="max-w-5xl w-11/12 mx-auto mt-16">
+      <section className="max-w-5xl w-11/12 mx-auto mt-16 p-8">
           {this.state.loading ? 'loading' : <CoursesList courses={this.state.courses} /> }
       </section>  
     )    
