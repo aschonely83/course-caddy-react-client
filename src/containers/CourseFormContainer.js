@@ -45,7 +45,7 @@ export default class CourseFormContainer extends Component {
         </fieldset>
         <button
           type="submit" 
-          className="w-full p-4 bg-green-300 mt-4 hover:bg-green-400 transition-all duration-200">Add Course</button>
+          className="w-full p-4 bg-green-600 mt-4 hover:bg-green-700 transition-all duration-200 text-yellow-400 font-semibold">ADD COURSE</button>
       </form>    
     )    
   }

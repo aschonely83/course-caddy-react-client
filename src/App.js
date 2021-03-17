@@ -12,10 +12,10 @@ function App() {
   return (
     <div className="App">
       <Router>
-      <nav className="text-center bg-green-900 text-blue-100 p-4">
+      <nav className="text-center bg-yellow-400 text-red-600 p-4">
         <NavLink 
           className="inline-block px-4 py-2"
-          activeClassName="text-blue-300"
+          activeClassName="text-red-800"
           exact 
           to="/"
           >
@@ -23,7 +23,7 @@ function App() {
         </NavLink>
         <NavLink 
           className="inline-block px-4 py-2"
-          activeClassName="text-blue-300" 
+          activeClassName="text-red-800" 
           to="/courses/new"
           >
             New Course

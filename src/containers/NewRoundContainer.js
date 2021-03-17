@@ -29,24 +29,24 @@ export default class NewRoundContainer extends Component {
     >      
     <h1 className="text-center text-3xl font-semibold mb-2">New Round</h1>
     <fieldset className="">
+      <label className="block uppercase">Par</label>
       <input
         type="text"
         name="par"
-        placeholder="Par"
         className="w-full border-2 p-4 my-4" 
        />
     </fieldset>
     <fieldset class>
+      <label className="block uppercase">Score</label>
       <input
         type="text"
         name="score"
-        placeholder="Score" 
         className="w-full border-2 p-4 my-4" 
        />
     </fieldset>
     <button
       type="submit" 
-      className="w-full p-4 bg-green-300 mt-4 hover:bg-green-400 transition-all duration-200">Add Round</button>
+      className="w-full p-4 bg-green-600 hover:bg-green-700 transition-all duration-200 text-yellow-400 font-semibold">ADD ROUND</button>
     </form> 
    )    
   }    
