@@ -27,20 +27,22 @@ export default class NewRoundContainer extends Component {
       className="max-w-4xl w-11/12 mx-auto mt-16 shadow-lg px-8 py-6"
       onSubmit={this.handleSubmit}
     >      
-    <h1 className="text-center text-3xl font-semibold mb-2">New Round</h1>
+    <h1 className="text-center text-3xl font-semibold mb-8 ">New Round</h1>
     <fieldset className="">
-      <label className="block uppercase">Par</label>
+      <label htmlFor="par" className="block uppercase">Par</label>
       <input
         type="text"
         name="par"
+        id="par"
         className="w-full border-2 p-4 my-4" 
        />
     </fieldset>
     <fieldset class>
-      <label className="block uppercase">Score</label>
+      <label htmlFor="score" className="block uppercase">Score</label>
       <input
         type="text"
         name="score"
+        id="score"
         className="w-full border-2 p-4 my-4" 
        />
     </fieldset>
