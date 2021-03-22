@@ -29,7 +29,7 @@ export default class NewRoundContainer extends Component {
       .then(res => res.json())
       .then((roundJson) => {
         console.log(roundJson)
-       //this.props.history.push(`/courses/${this.props.match.params.courseId}`);
+       this.props.history.push(`/courses/${this.props.match.params.courseId}`);
       })
   }
 

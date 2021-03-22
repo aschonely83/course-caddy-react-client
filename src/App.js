@@ -7,6 +7,7 @@ import { BrowserRouter as Router,
 import CoursesIndexContainer from './containers/CoursesIndexContainer';
 import CourseFormContainer from './containers/CourseFormContainer';
 import NewRoundContainer from './containers/NewRoundContainer'
+import CourseShowContainer from './containers/CourseShowContainer';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           </Route>
           <Route path="/courses/new" component={CourseFormContainer} />
           <Route path="/courses/:courseId/rounds/new" component={NewRoundContainer} />
+          <Route path="/courses/:courseId" component={CourseShowContainer} />
         </Switch>
       </Router> 
     </div>
