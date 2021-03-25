@@ -20,7 +20,10 @@ export default class NewRoundContainer extends Component {
     
     body.append('round[par]', form.par.value)
     body.append('round[score]', form.score.value)
+    body.append('round[card]',form.card.files[0], form.card.value)
     body.append('round[course_id]', this.props.match.params.courseId)
+   
+    
 
     fetch("http://localhost:3001/rounds", {
       method: 'post',
@@ -41,20 +44,31 @@ export default class NewRoundContainer extends Component {
     >      
     <h1 className="text-center text-3xl font-semibold mb-8 ">New Round</h1>
     <fieldset className="">
-      <label className="block uppercase">Par</label>
+      <label htmlFor="par" className="block uppercase">Par</label>
       <input
         type="text"
         name="par"
+        id="par"
         className="w-full border-2 p-4 my-4" 
        />
     </fieldset>
     <fieldset className="">
-      <label className="block uppercase">Score</label>
+      <label htmlFor="score" className="block uppercase">Score</label>
       <input
         type="text"
         name="score"
+        id="score"
         className="w-full border-2 p-4 my-4" 
        />
+    </fieldset>
+    <fieldset className="">
+      <label htmlFor="card" className="block uppercase">Card</label>
+      <input
+        type="file"
+        className="w-full my-4"
+        name="card"
+        id="card"
+      />
     </fieldset>
     <button
       type="submit" 
