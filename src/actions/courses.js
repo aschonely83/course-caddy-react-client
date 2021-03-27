@@ -42,26 +42,22 @@ export const fetchCourse = (courseId) => {
 
 export const createCourse = (formData) => {
   return (dispatch) => {
-    return fetch('https://localhost:3001.courses', {
+    return fetch('http://localhost:3001/courses', {
       method: 'POST',
       headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({course: formData})
+      body: JSON.stringify({ course: formData}),
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          return res.json().then(errors => Promise.reject(errors))
-        }
-      })
-      .then(courseJson => {
-        dispatch({ 
-          type: SUCCESSFULLY_CREATED_COURSE,
-          payload: courseJson
-        });
-      })
+     .then((res) => res.json())
+     .then((courseJson) => {
+       dispatch({
+         type: SUCCESSFULLY_CREATED_COURSE,
+         payload: courseJson,
+       })
+     }) 
   }
 }
+      
+
