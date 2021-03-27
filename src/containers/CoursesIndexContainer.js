@@ -1,37 +1,44 @@
 import React, { Component} from 'react'
-import CoursesList from '../components/CoursesList';
+import { connect } from 'react-redux'
+import { fetchCourses } from '../actions/courses'
+import CoursesList from '../components/CoursesList'
 
 
-export default class CoursesIndexContainer extends Component {
-  
-    state = {
-      courses: [],
-      loading: true    
-    }
-
-    componentDidMount() {
-      fetch('http://localhost:3001/courses', {
-          method: 'get',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          }
-        })
-          .then(res => res.json())
-          .then(coursesJson => {
-            this.setState({
-              courses: coursesJson,
-              loading: false
-            })
-          })
-        
-      }
+class CoursesIndexContainer extends Component {
+  componentDidMount() {
+    this.props.dispatchFetchCourses()   
+  }
     
-    render() {
+  render() {
+    if (this.props.loadingState === 'notStarted') {
+      return null
+    }
     return (
       <section className="max-w-5xl w-11/12 mx-auto mt-16 p-8">
-          {this.state.loading ? 'loading' : <CoursesList courses={this.state.courses} /> }
+          {this.props.loadingState === 'inProgress' ? (
+            'loading' 
+          ) : (
+            <CoursesList courses={this.props.courses} /> 
+          )}
       </section>  
     )    
   }    
 }
+
+const mapStateToProps = (state) => {
+  return {
+    courses: state.courses.list,
+    loadingState: state.courses.loadingState,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatchFetchCourses: () => dispatch(fetchCourses()),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CoursesIndexContainer)
