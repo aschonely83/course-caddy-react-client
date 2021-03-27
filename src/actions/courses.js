@@ -29,7 +29,7 @@ export const fetchCourses = () => {
 export const fetchCourse = (courseId) => {
   return (dispatch) => {
     dispatch({ type: START_LOADING_COURSE, payload: courseId });
-    fetch(`http://localhost:3000/courses/${courseId}`)
+    fetch(`http://localhost:3001/courses/${courseId}`)
       .then((res) => res.json())
       .then((courseRoundsJson) => {
         dispatch({ 
