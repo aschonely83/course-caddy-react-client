@@ -1,4 +1,9 @@
-import { START_LOADING_COURSES, SUCCESSFULLY_LOADED_COURSES} from '.'
+import { 
+  START_LOADING_COURSES,
+  START_LOADING_COURSE, 
+  SUCCESSFULLY_LOADED_COURSES,
+  SUCCESSFULLY_LOADED_COURSE_ROUNDS,
+} from '.'
 
 export const fetchCourses = () => {
   return (dispatch) => {
@@ -19,3 +24,17 @@ export const fetchCourses = () => {
       })    
   }    
 }
+
+export const fetchCourse = (courseId) => {
+  return (dispatch) => {
+    dispatch({ type: START_LOADING_COURSE, payload: courseId });
+    fetch(`http://localhost:3000/courses/${courseId}`)
+      .then((res) => res.json())
+      .then((courseRoundsJson) => {
+        dispatch({ 
+          type: SUCCESSFULLY_LOADED_COURSE_ROUNDS,
+          payload: courseRoundsJson
+        })
+      });
+  };
+};
