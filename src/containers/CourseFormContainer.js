@@ -1,8 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from "react-redux";
+import { createCourse } from "../actions/courses"
 
-export default class CourseFormContainer extends Component {
+class CourseFormContainer extends Component {
   state = {
-    name: ''    
+    name: ""    
   }
 
   handleChange = (e) => {
@@ -13,18 +15,10 @@ export default class CourseFormContainer extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    fetch('http://localhost:3001/courses', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ course: this.state }),
-    })
-      .then((res) => res.json())
-      .then((courseJson) => {
+    this.props.dispatchCreateCourse(this.state)
+      .then(courseJson => {
         this.props.history.push('/')
-      })
+      }) 
   }
   
   render() {
@@ -50,3 +44,11 @@ export default class CourseFormContainer extends Component {
     )    
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatchCreateCourse: (formData) => dispatch(createCourse(formData))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(CourseFormContainer)
