@@ -1,6 +1,7 @@
 import {
   SUCCESSFULLY_LOADED_COURSE_ROUNDS,
-  START_LOADING_COURSE,    
+  START_LOADING_COURSE,
+  SUCCESSFULLY_CREATED_ROUND    
 } from "../actions"
 
 const intialState = {
@@ -21,8 +22,15 @@ export default function roundReducer(state = intialState, action) {
           ...state.coursesLoaded,
           [action.payload.course.id]: "successfull",
         },
-        list: state.list.concat(action.payload.rounds),
+        list: state.list
+        .filter((round) => round.course_id !== action.payload.course.id)
+        .concat(action.payload.rounds),
       };
+    case SUCCESSFULLY_CREATED_ROUND:
+      return {
+        ...state,
+        list: state.list.concat(action.payload)
+      }  
     default:
       return state;    
   }  
