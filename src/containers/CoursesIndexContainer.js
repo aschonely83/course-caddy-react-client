@@ -1,7 +1,7 @@
-import React, { Component} from 'react'
-import { connect } from 'react-redux'
-import { fetchCourses } from '../actions/courses'
-import CoursesList from '../components/CoursesList'
+import React, { Component} from 'react';
+import { connect } from 'react-redux';
+import { fetchCourses } from '../actions/courses';
+import CoursesList from '../components/CoursesList';
 
 
 class CoursesIndexContainer extends Component {
