@@ -1,29 +1,24 @@
-import React, { Component } from 'react'
-
-export default class NewRoundContainer extends Component {
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createRound} from '../actions/rounds';
+class NewRoundContainer extends Component {
  
   handleSubmit = (e) => {
     e.preventDefault();
-    const form = e.target
-    const body = new FormData()
+    const form = e.target;
+    const formData = new FormData();
     
-    body.append('round[par]', form.par.value)
-    body.append('round[score]', form.score.value)
-    body.append('round[card]',form.card.files[0], form.card.value)
-    body.append('round[course_id]', this.props.match.params.courseId)
-   
-    
+    formData.append('round[par]', form.par.value);
+    formData.append('round[score]', form.score.value);
+    form.card.files[0] &&
+      formData.append('round[card]',form.card.files[0], form.card.value);
+    formData.append('round[course_id]', this.props.match.params.courseId);
 
-    fetch("http://localhost:3001/rounds", {
-      method: 'post',
-      body,
-    })
-      .then(res => res.json())
+    this.props.dispatchCreateRound(formData)
       .then((roundJson) => {
-        console.log(roundJson)
-       this.props.history.push(`/courses/${this.props.match.params.courseId}`);
-      })
-  }
+        this.props.history.push(`/courses/${this.props.match.params.courseId}`);
+      });
+  };
 
   render() {
     return ( 
@@ -33,7 +28,9 @@ export default class NewRoundContainer extends Component {
     >      
     <h1 className="text-center text-3xl font-semibold mb-8 ">New Round</h1>
     <fieldset className="">
-      <label htmlFor="par" className="block uppercase">Par</label>
+      <label htmlFor="par" className="block uppercase">
+        Par:
+      </label>
       <input
         type="text"
         name="par"
@@ -42,7 +39,9 @@ export default class NewRoundContainer extends Component {
        />
     </fieldset>
     <fieldset className="">
-      <label htmlFor="score" className="block uppercase">Score</label>
+      <label htmlFor="score" className="block uppercase">
+        Score:
+      </label>
       <input
         type="text"
         name="score"
@@ -51,7 +50,9 @@ export default class NewRoundContainer extends Component {
        />
     </fieldset>
     <fieldset className="">
-      <label htmlFor="card" className="block uppercase">Card</label>
+      <label htmlFor="card" className="block uppercase">
+        Card
+      </label>
       <input
         type="file"
         className="w-full my-4"
@@ -66,3 +67,11 @@ export default class NewRoundContainer extends Component {
    )    
   }    
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatchCreateRound: (formData) => dispatch(createRound(formData)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(NewRoundContainer)
