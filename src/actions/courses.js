@@ -3,7 +3,8 @@ import {
   START_LOADING_COURSE, 
   SUCCESSFULLY_LOADED_COURSES,
   SUCCESSFULLY_LOADED_COURSE_ROUNDS,
-} from '.'
+  SUCCESSFULLY_CREATED_COURSE,
+} from ".";
 
 export const fetchCourses = () => {
   return (dispatch) => {
@@ -19,9 +20,9 @@ export const fetchCourses = () => {
       .then((coursesJson) => {
         dispatch({
           type: SUCCESSFULLY_LOADED_COURSES,
-          payload: coursesJson,    
+          payload: coursesJson    
         })    
-      })    
+      });    
   }    
 }
 
@@ -38,3 +39,29 @@ export const fetchCourse = (courseId) => {
       });
   };
 };
+
+export const createCourse = (formData) => {
+  return (dispatch) => {
+    return fetch('https://localhost:3001.courses', {
+      method: 'POST',
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({course: formData})
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          return res.json().then(errors => Promise.reject(errors))
+        }
+      })
+      .then(courseJson => {
+        dispatch({ 
+          type: SUCCESSFULLY_CREATED_COURSE,
+          payload: courseJson
+        });
+      })
+  }
+}
