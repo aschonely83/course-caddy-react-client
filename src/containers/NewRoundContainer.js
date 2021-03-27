@@ -1,18 +1,7 @@
 import React, { Component } from 'react'
 
 export default class NewRoundContainer extends Component {
-  //state = {
-  //par: '',
-  //score: ''
-  //}
-  
- // handleChange = (e) => {
- //   this.setState({
- //   [e.target.par]: e.target.value,
- //   [e.target.score]: e.target.value  
- //   })  
- // }
-
+ 
   handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target
