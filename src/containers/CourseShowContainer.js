@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { fetchCourse } from "../actions/courses";
+import RoundsList from '../components/RoundsList';
 
 class CourseShowContainer extends Component {
   state = {
@@ -23,16 +24,7 @@ class CourseShowContainer extends Component {
         </h1>
         <p className="my-2"><Link to={`/courses/${this.props.course.id}/rounds/new`}>Add a Round</Link></p>
         <div className="grid grid-cols-3">
-          {this.props.rounds.map((round) => (
-            <figure>
-              <p>{round.par}</p>
-              <p>{round.score}</p>
-              <img className="" 
-              src={round.card_url}
-              alt="score card" 
-              />
-            </figure>
-          ))}
+          <RoundsList rounds={this.props.rounds}/>
         </div>
       </section>
     )
