@@ -2,6 +2,7 @@ import React, { Component} from 'react';
 import { connect } from 'react-redux';
 import { fetchCourses } from '../actions/courses';
 import CoursesList from '../components/CoursesList';
+import Counter from '../components/Counter'
 
 
 class CoursesIndexContainer extends Component {
@@ -18,8 +19,9 @@ class CoursesIndexContainer extends Component {
           {this.props.loadingState === 'inProgress' ? (
             'loading' 
           ) : (
-            <CoursesList courses={this.props.courses} /> 
+            <CoursesList courses={this.props.courses} />
           )}
+         <br></br> <Counter /> 
       </section>  
     )    
   }    
